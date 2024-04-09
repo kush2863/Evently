@@ -1,4 +1,4 @@
-import { IEvent } from '@/lib/database/models/event.model'
+import { IEvent } from '@/lib/mongodb/database/models/event.model'
 import { formatDateTime } from '@/lib/utils'
 import { auth } from '@clerk/nextjs'
 import Image from 'next/image'
