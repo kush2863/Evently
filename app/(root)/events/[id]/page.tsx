@@ -79,7 +79,7 @@ const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) 
       </div>
     </section>
 
-    
+   
     </>
   )
 }

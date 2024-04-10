@@ -8,7 +8,7 @@ weight:['400','500','600','700'],
 variable: '--font-poppins', });
 
 export const metadata: Metadata = {
-  title: "Evently",
+  title: "College Connect",
   description: "Platform for evently",
   icons:{
     icon:'/assets/images/logo.svg'
