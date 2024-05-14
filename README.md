@@ -1,6 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+The Soroban-stellar Project is in the Stellar Branch.. I have Tried multiple attempts to implement Frieghter Wallet using its packages and Read and try different Resources too
+The code Has no errors but when i am calling the Frieghter wallet,their is an issue with the Extension as i my browser is prompting User has wallet connected or user has give access but it isnt connecting with the Functions provided In the documentation... I have followed step by step given in the documentations plus refered the github repo nothing worked.
+Barboros Suggested that i write this thing in readme and Submit my project....
 
 First, run the development server:
 
