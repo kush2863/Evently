@@ -13,6 +13,21 @@ export const headerLinks = [
     },
   ]
   
+  type WalletChain = {
+    id: string;
+    name: string;
+    network: string;
+    networkUrl: string;
+  };
+
+  const publicWallet: WalletChain = {
+    id: "public",
+    name: "Public Chain",
+    network: "public-network",
+    networkUrl: "https://public-network.com",
+  };
+  
+  
   export const eventDefaultValues = {
     title: '',
     description: '',
@@ -24,4 +39,6 @@ export const headerLinks = [
     price: '',
     isFree: false,
     url: '',
+    
   }
+  
