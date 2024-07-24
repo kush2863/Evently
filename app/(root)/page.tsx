@@ -11,10 +11,13 @@ import { SignedOut } from '@clerk/nextjs';
 import Image from 'next/image'
 import Link from 'next/link'
 
+
 export default async function Home({ searchParams }: SearchParamProps) {
   const page = Number(searchParams?.page) || 1;
   const searchText = (searchParams?.query as string) || '';
   const category = (searchParams?.category as string) || '';
+  
+
 
   const events = await getAllEvents({
     query: searchText,
