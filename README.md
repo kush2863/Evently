@@ -1,4 +1,4 @@
-Checkout the live website:- https://collegeconnect1.vercel.app
+
 
 # Idea
 ## A platform where college societies can post their future events happening in their college so a fast and better publicity plus it can also accomodates inter college events too saving them a lot of time and efforts for publicity
