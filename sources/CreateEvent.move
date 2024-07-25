@@ -1,6 +1,5 @@
 module 0x5a11629621d7f79fe39531900297eec60bb30e5d1b8eab1547bb4de58e15cc1a::create_event {
-
-    use std::signer;
+ use std::signer;
     use std::string;
     use std::vector;
 
