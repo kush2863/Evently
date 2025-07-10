@@ -17,14 +17,14 @@ module 0x5a11629621d7f79fe39531900297eec60bb30e5d1b8eab1547bb4de58e15cc1a::creat
     }
 
     // Initialize the EventStore for the account
-    public fun initialize_account(account: &signer) {
+    public entry fun initialize_account(account: &signer) {
         move_to(account, EventStore {
             events: vector::empty<Event>(),
         });
     }
 
     // Function to create a new event
-    public fun create_event(
+    public entry fun create_event(
         account: &signer,
         title: string::String,
         description: string::String,

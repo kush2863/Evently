@@ -104,42 +104,75 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
   }
 
   async function addEventToAptosBlockchain(event: IEvent) {
-    const config = new AptosConfig({ network: Network.TESTNET });
-    const aptos = new Aptos(config);
+    try {
+      const config = new AptosConfig({ network: Network.TESTNET });
+      const aptos = new Aptos(config);
 
-   const Useraddress = Account.generate();
-   console.log(Useraddress.accountAddress)
+      const Useraddress = Account.generate();
+      console.log(Useraddress.accountAddress);
 
-    await aptos.fundAccount({
-      accountAddress: Useraddress.accountAddress,
-      amount: 100_000_000,
-    });
+      // Fund the account using the Aptos faucet with the required header
+      await fetch('https://faucet.testnet.aptoslabs.com/fund', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-is-jwt': 'true',
+          'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ3YWU0OWM0YzlkM2ViODVhNTI1NDA3MmMzMGQyZThlNzY2MWVmZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiMDRfS1VTSCBBR1JBV0FMIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0tYYmdrX0cwdE1rLVpfN3pJZXlwR0ZfMVVyby1SZFdfVThjM0xGc2JZM0c2cG1xQT1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9hcHRvcy1hcGktZ2F0ZXdheS1wcm9kIiwiYXVkIjoiYXB0b3MtYXBpLWdhdGV3YXktcHJvZCIsImF1dGhfdGltZSI6MTc1MjE0Mjc4OCwidXNlcl9pZCI6ImdvcFVsU0x5NW1ZUGtJa292WUhGcXhwc1U1bzIiLCJzdWIiOiJnb3BVbFNMeTVtWVBrSWtvdllIRnF4cHNVNW8yIiwiaWF0IjoxNzUyMTQyNzg4LCJleHAiOjE3NTIxNDYzODgsImVtYWlsIjoia3VzaC5hZ3Jhd2FsX2l0MjJAcGNjb2VyLmluIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMDI3ODczMTEwNjk0MTc0MTAyOTIiXSwiZW1haWwiOlsia3VzaC5hZ3Jhd2FsX2l0MjJAcGNjb2VyLmluIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.HrWOIzkrVRuGfakLSnhab7LWo_IzzwyJrb-SpLdzxGbS3wQycRM8CYyv4NzVI37IuNFL8Pqw9DPUP0zZ908Syz56kKDhDL9ESYgHxL3x8O8L2EBXEwxPTqKNTEawIyOUYkp5Ks7qXynnQl7_ZmKJN-Ugp3rn4QO2jJMPOe4WI3iDSA61HY5vZoIRtejhjROd6WIEgJoM1MY_AOwEGMzJXJELp_w87x0ecXCj7CbuquVAumCzDs7Bu9zrm6_kZg1MtoCkAhwHTimhgx_6jxbwpKk0sugW-DM9lf4GH8tIDKhIfYC2PLK7tE8ypQj69bgQfQPqm1z0GRlp9PSWaj6LqA',
+        },
+        body: JSON.stringify({
+          address: Useraddress.accountAddress.toString(),
+          amount: 100_000_000,
+        }),
+      });
+  
+      // 1. Initialize the EventStore for the account (only needs to be done once per account)
+      const initTx = await aptos.transaction.build.simple({
+        sender: Useraddress.accountAddress,
+        data: {
+          function: "0x5a11629621d7f79fe39531900297eec60bb30e5d1b8eab1547bb4de58e15cc1a::create_event::initialize_account",
+          functionArguments: [],
+        },
+      });
+      const initAuth = aptos.transaction.sign({
+        signer: Useraddress,
+        transaction: initTx,
+      });
+      await aptos.transaction.submit.simple({
+        transaction: initTx,
+        senderAuthenticator: initAuth,
+      });
 
-    const transaction = await aptos.transaction.build.simple({
-      sender: Useraddress.accountAddress,
-      data: {
-        function: "0x5a11629621d7f79fe39531900297eec60bb30e5d1b8eab1547bb4de58e15cc1a::create_event::initialize_account",
-        functionArguments: [
-          event.title,
-          event.description,
-          event.url,
-          event.imageUrl,
-        ],
-      },
-    });
+      // 2. Call create_event with event details
+      const createTx = await aptos.transaction.build.simple({
+        sender: Useraddress.accountAddress,
+        data: {
+          function: "0x5a11629621d7f79fe39531900297eec60bb30e5d1b8eab1547bb4de58e15cc1a::create_event::create_event",
+          functionArguments: [
+            event.title,
+            event.description,
+            event.url,
+            event.imageUrl,
+          ],
+        },
+      });
 
-    const senderAuthenticator = aptos.transaction.sign({
-      signer: Useraddress,
-      transaction,
-    });
+      const createAuth = aptos.transaction.sign({
+        signer: Useraddress,
+        transaction: createTx,
+      });
 
-    const submittedTransaction = await aptos.transaction.submit.simple({
-      transaction,
-      senderAuthenticator,
-    });
+      const submittedTransaction = await aptos.transaction.submit.simple({
+        transaction: createTx,
+        senderAuthenticator: createAuth,
+      });
 
-    await aptos.waitForTransaction({ transactionHash: submittedTransaction.hash });
-    console.log(submittedTransaction);
+      await aptos.waitForTransaction({ transactionHash: submittedTransaction.hash });
+      console.log("Event successfully created on Aptos blockchain!", submittedTransaction);
+      return true;
+    } catch (error) {
+      console.error("Failed to create event on Aptos blockchain:", error);
+      return false;
+    }
   }
 
   return (
