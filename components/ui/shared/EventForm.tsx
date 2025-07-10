@@ -117,7 +117,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
         headers: {
           'Content-Type': 'application/json',
           'x-is-jwt': 'true',
-          'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ3YWU0OWM0YzlkM2ViODVhNTI1NDA3MmMzMGQyZThlNzY2MWVmZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiMDRfS1VTSCBBR1JBV0FMIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0tYYmdrX0cwdE1rLVpfN3pJZXlwR0ZfMVVyby1SZFdfVThjM0xGc2JZM0c2cG1xQT1zOTYtYyIsImlzcyI6Imh0dHBzOi8vc2VjdXJldG9rZW4uZ29vZ2xlLmNvbS9hcHRvcy1hcGktZ2F0ZXdheS1wcm9kIiwiYXVkIjoiYXB0b3MtYXBpLWdhdGV3YXktcHJvZCIsImF1dGhfdGltZSI6MTc1MjE0Mjc4OCwidXNlcl9pZCI6ImdvcFVsU0x5NW1ZUGtJa292WUhGcXhwc1U1bzIiLCJzdWIiOiJnb3BVbFNMeTVtWVBrSWtvdllIRnF4cHNVNW8yIiwiaWF0IjoxNzUyMTQyNzg4LCJleHAiOjE3NTIxNDYzODgsImVtYWlsIjoia3VzaC5hZ3Jhd2FsX2l0MjJAcGNjb2VyLmluIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMDI3ODczMTEwNjk0MTc0MTAyOTIiXSwiZW1haWwiOlsia3VzaC5hZ3Jhd2FsX2l0MjJAcGNjb2VyLmluIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.HrWOIzkrVRuGfakLSnhab7LWo_IzzwyJrb-SpLdzxGbS3wQycRM8CYyv4NzVI37IuNFL8Pqw9DPUP0zZ908Syz56kKDhDL9ESYgHxL3x8O8L2EBXEwxPTqKNTEawIyOUYkp5Ks7qXynnQl7_ZmKJN-Ugp3rn4QO2jJMPOe4WI3iDSA61HY5vZoIRtejhjROd6WIEgJoM1MY_AOwEGMzJXJELp_w87x0ecXCj7CbuquVAumCzDs7Bu9zrm6_kZg1MtoCkAhwHTimhgx_6jxbwpKk0sugW-DM9lf4GH8tIDKhIfYC2PLK7tE8ypQj69bgQfQPqm1z0GRlp9PSWaj6LqA',
+          'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ3YWU0OWM0YzlkM2ViODVhNTI1NDA3MmMzMGQyZThlNzY2MWVmZTEiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiVGVjaCBWWSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMWm5FWlV4THBpU2xuV2NGLVpGR3cxVWh2QkpRQkczLXRTcFJWTWZ0WU5sUjJwRmc9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYXB0b3MtYXBpLWdhdGV3YXktcHJvZCIsImF1ZCI6ImFwdG9zLWFwaS1nYXRld2F5LXByb2QiLCJhdXRoX3RpbWUiOjE3NTIxNDQyNjIsInVzZXJfaWQiOiJ4TUtDT1RMcU56Z0wxbTltdXF3ZG9xOU5BOG8xIiwic3ViIjoieE1LQ09UTHFOemdMMW05bXVxd2RvcTlOQThvMSIsImlhdCI6MTc1MjE0NDI2MiwiZXhwIjoxNzUyMTQ3ODYyLCJlbWFpbCI6InRlY2hAdm9sdW50ZWVyeWF0cmEuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZ29vZ2xlLmNvbSI6WyIxMDYzMjY0MzUwMDU1ODAxMTA3NTMiXSwiZW1haWwiOlsidGVjaEB2b2x1bnRlZXJ5YXRyYS5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJnb29nbGUuY29tIn19.cCrFn0rJbPBPV_q24IQ05bM70bcJ6ouLy4FtbCuBuk_qkSlJsYhtQTLuZhq6QY0_BPXfqFu5e9WO4BdRq13rW8qYwhn7B4whxqRFSOql8cpYRcwt1YEFEUlayH8GElGm4WEtGC8MlQlGdwI6VlKXs8g7CGPb6Eo1t9c_u-6fg5hCf2ORhF4cmojQ96yBVkFUZfrC5LJznlQKLM0s11w7VIOIn-mwar9ya5WZ271k0GTgyLQPpb9ot7ZHAQnfy30KVOZf4x-r71Kd2Wex4PnT9Hm487prlEwIGHuy6vakOKaLcSsYOe2Lzf6wlw1g87UO0t9HkEtlv7i7ou90Qupu-w',
         },
         body: JSON.stringify({
           address: Useraddress.accountAddress.toString(),
@@ -131,22 +131,27 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
         data: {
           function: "0x5a11629621d7f79fe39531900297eec60bb30e5d1b8eab1547bb4de58e15cc1a::create_event::initialize_account",
           functionArguments: [],
+          typeArguments: [],
         },
       });
       const initAuth = aptos.transaction.sign({
         signer: Useraddress,
         transaction: initTx,
       });
-      await aptos.transaction.submit.simple({
+      const initResult = await aptos.transaction.submit.simple({
         transaction: initTx,
         senderAuthenticator: initAuth,
       });
+      // Wait for confirmation before proceeding
+      await aptos.waitForTransaction({ transactionHash: initResult.hash });
 
       // 2. Call create_event with event details
+      console.log('Arguments:', event.title, event.description, event.url, event.imageUrl);
       const createTx = await aptos.transaction.build.simple({
         sender: Useraddress.accountAddress,
         data: {
           function: "0x5a11629621d7f79fe39531900297eec60bb30e5d1b8eab1547bb4de58e15cc1a::create_event::create_event",
+          typeArguments: [],
           functionArguments: [
             event.title,
             event.description,
@@ -160,6 +165,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
         signer: Useraddress,
         transaction: createTx,
       });
+      console.log(createAuth);
 
       const submittedTransaction = await aptos.transaction.submit.simple({
         transaction: createTx,
