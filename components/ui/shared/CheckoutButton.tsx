@@ -7,7 +7,6 @@ import Link from 'next/link'
 import React from 'react'
 import { Button } from '../button'
 import Checkout from './Checkout'
-import { link } from "fs";
 
 const CheckoutButton = ({ event }: { event: IEvent }) => {
   const { user } = useUser();
@@ -24,12 +23,7 @@ const CheckoutButton = ({ event }: { event: IEvent }) => {
       ): (
         <>
           <SignedIn>
-
-            <Button  asChild className="button rounded-full" size="lg">
-            <Checkout  event={event} userId={userId} />
-                
-            
-            </Button>
+            <Checkout event={event} userId={userId} />
           </SignedIn>
         
 
