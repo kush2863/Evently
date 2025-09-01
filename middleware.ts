@@ -11,7 +11,10 @@ publicRoutes:[
   '/assets/images/logo.svg',
   '/admin/__webpack_hmr',
   'assets/images/hero.png',
-  'assets/icons/search.svg'
+  'assets/icons/search.svg',
+  '/assets/images/hero.png',
+  '/assets/images/logo.svg',
+  '/assets/images/logo.svg', 
 ],
 ignoredRoutes:[
     '/api/webhook/clerk',
