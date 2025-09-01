@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
-import { WalletProvider } from "@/components/ui/shared/Wallet";
+import { AptosWalletAdapterProvider } from "@aptos-labs/wallet-adapter-react";
 
 
 const poppins = Poppins({
@@ -10,7 +10,16 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
 });
+type AvailableWallets = "Petra" | "Martian" | "OtherWallet"; // Example
 
+const optInWallets: AvailableWallets[] = ["Petra", "Martian"];
+ 
+const dappInfo = {
+  aptosConnect: {
+    dappName: "My awesome dapp"  ,// defaults to document's title
+    dappImageURI: "..."  // defaults to dapp's favicon
+  },
+};
 
 
 export const metadata: Metadata = {
@@ -29,7 +38,9 @@ export default function RootLayout({
  
   return (
     <ClerkProvider>
-      {/*<WalletProvider>*/}
+  {/*  <AptosWalletAdapterProvider  dappInfo={dappInfo}
+    autoConnect
+  optInWallets={optInWallets}> */}
         <html lang="en">
     
         
@@ -38,7 +49,8 @@ export default function RootLayout({
             </body>
       
         </html>
-     {/* </WalletProvider> */}
+       
+     {/*  </AptosWalletAdapterProvider> */}
      
     </ClerkProvider>
   );

@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { IEvent } from '@/lib/mongodb/database/models/event.model';
 import { Button } from '../button';
-import { Account, Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk";
+import { APTOS_COIN, Account, Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk";
+// import { InputTransactionData, useWallet } from '@aptos-labs/wallet-adapter-react';
+// const { signAndSubmitTransaction } = useWallet();
+
 const Checkout = ({ event, userId }: { event: IEvent, userId: string }) => {
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -35,10 +38,17 @@ const Checkout = ({ event, userId }: { event: IEvent, userId: string }) => {
     // Setup the client
     const config = new AptosConfig({ network: Network.TESTNET });
     const aptos = new Aptos(config);
-    const ledgerInfo = await aptos.getLedgerInfo();
-const modules = await aptos.getAccountModules({ accountAddress: "0x95ec84bf3d2a1b5f5b20f3d9672903cb950c26ae3f01bba9dc8ada21792fb213" });
-const tokens = await aptos.getAccountOwnedTokens({ accountAddress: "0x95ec84bf3d2a1b5f5b20f3d9672903cb950c26ae3f01bba9dc8ada21792fb213" });
-  }
+   
+//const transaction: InputTransactionData = {
+  //data: {
+    //function: '0x1::coin::transfer',
+    // typeArguments: [APTOS_COIN],
+    //functionArguments: [Account.address , 1],
+  //},
+};
+ 
+//const txn = await signAndSubmitTransaction(transaction);
+ // }
  
   
   

@@ -11,7 +11,7 @@
   "dependencies": {
     "@aptos-labs/ts-sdk": "^1.26.0",
     "@aptos-labs/wallet-adapter-ant-design": "^3.0.3",
-    "@aptos-labs/wallet-adapter-react": "^3.5.4",
+    "@aptos-labs/wallet-adapter-react": "^3.7.1",
     "@clerk/nextjs": "^4.29.10",
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-alert-dialog": "^1.0.5",
