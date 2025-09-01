@@ -10,6 +10,8 @@ publicRoutes:[
     '/favicon.ico',
   '/assets/images/logo.svg',
   '/admin/__webpack_hmr',
+  'assets/images/hero.png',
+  'assets/icons/search.svg'
 ],
 ignoredRoutes:[
     '/api/webhook/clerk',
